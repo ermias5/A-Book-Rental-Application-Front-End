@@ -35,7 +35,9 @@ export default function CatagoryMenu() {
       >
         <Stack direction={"row"} alignItems={"center"} spacing={1}>
           <MenuIcon />
-          <Typography fontSize={".8rem"}>Catagories</Typography>
+          <Typography fontSize={".8rem"} display={{ xs: "none", md: "flex" }}>
+            Catagories
+          </Typography>
         </Stack>
       </Box>
       <Menu

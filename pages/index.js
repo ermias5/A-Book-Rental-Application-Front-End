@@ -1,5 +1,5 @@
-import ListOfBooks from "@/components/books/ListOfBooks";
-import TopNavBar from "@/components/NavBar/TopNavBar";
+import ListOfBooks from "../components/books/ListOfBooks.jsx";
+import TopNavBar from "../components/navBar/TopNavBar.jsx";
 import { Box, Divider } from "@mui/material";
 import Head from "next/head";
 

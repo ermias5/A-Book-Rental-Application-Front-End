@@ -21,7 +21,7 @@ export default function SearchBar() {
       }}
     >
       <OutlinedInput
-        placeholder="Search For Everything"
+        // placeholder="Search For Everything"
         // placeholder={{ xs: "Search", sm: "Search For Everything" }}
         sx={{
           borderRadius: "5rem",

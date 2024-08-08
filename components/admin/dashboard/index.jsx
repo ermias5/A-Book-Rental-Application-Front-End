@@ -10,7 +10,7 @@ export default function AdminDashboard() {
         <SideMenu />
       </Grid>
       <Grid item xs sx={{ bgcolor: "violet" }}>
-        <Box height={"100vh"}>hi</Box>
+        <Box height={"100vh"}>dashboard</Box>
       </Grid>
     </Grid>
   );

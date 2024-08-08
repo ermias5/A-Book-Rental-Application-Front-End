@@ -1,5 +1,5 @@
-// import TopNavBar from "../components/navBar/TopNavBar";
-import { Grid, Typography } from "@mui/material";
+import TopNavBar from "../../components/navBar/TopNavBar.jsx";
+import { Grid } from "@mui/material";
 import { useRouter } from "next/router";
 
 export default function DetailPage() {
@@ -8,7 +8,7 @@ export default function DetailPage() {
   const bookId = router.query.bookId;
   return (
     <>
-      {/* <TopNavBar /> */}
+      <TopNavBar />
       <Grid container>
         <Grid item></Grid>
         <Grid item></Grid>

@@ -11,10 +11,10 @@ export default function AccountThumbnail() {
         alignItems={"center"}
         justifyContent={"center"}
         height={"100%"}
-        overflowY={"none"}
+        overflowy={"none"}
         sx={{ backgroundColor: "#171B36" }}
       >
-        <Image src={accountLogo} alt="account image" />
+        <Image src={accountLogo} alt="account image"  />
       </Box>
     </>
   );

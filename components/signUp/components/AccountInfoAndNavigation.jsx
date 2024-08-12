@@ -8,6 +8,7 @@ export default function AccountInfoAndNavigation({
   history,
   path,
   accountSwitch,
+  handleSubmit
 }) {
   return (
     <>
@@ -15,7 +16,7 @@ export default function AccountInfoAndNavigation({
         <Checkbox />
         <Typography> {terms}</Typography>
       </Stack>
-      <Button variant="contained"> {registration}</Button>
+      <Button variant="contained" onClick={handleSubmit}> {registration}</Button>
       <Stack direction={"row"} justifyContent={"center"} spacing={1}>
         <Typography>{history}</Typography>
         <Link href={path} style={{ textDecoration: "none" }}>

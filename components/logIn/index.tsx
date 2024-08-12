@@ -1,6 +1,6 @@
 import { Box, Divider, Grid, Stack, TextField } from "@mui/material";
 import AccountThumbnail from "../signUp/components/AccountThumbnail.jsx";
-import AccountHeader from "../signUp/components/AccountHeader.jsx";
+import AccountHeader from "../signUp/components/AccountHeader";
 import AccountInfoAndNavigation from "../signUp/components/AccountInfoAndNavigation.jsx";
 import { useForm } from "react-hook-form";
 import { schema, Schema } from "../accountValidation/types/schema";

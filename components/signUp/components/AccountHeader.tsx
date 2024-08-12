@@ -3,13 +3,21 @@ import { Box, Stack, Typography } from "@mui/material";
 import accountLogoS from "../../../public/images/accountLogoS.png";
 import Image from "next/image";
 
-export default function AccountHeader({
+interface AccountHeaderProps {
+  title: string;
+  color?: string;
+  fontSize?: string;
+  logoHeight?: string;
+  logoWidth?: string;
+}
+
+const AccountHeader: React.FC<AccountHeaderProps> = ({
   title,
   color,
   fontSize,
   logoHeight,
   logoWidth,
-}) {
+}) => {
   return (
     <Stack spacing={3}>
       <Stack direction={"row"} spacing={2} alignItems={"center"}>
@@ -30,4 +38,6 @@ export default function AccountHeader({
       </Stack>
     </Stack>
   );
-}
+};
+
+export default AccountHeader;

@@ -1,10 +1,19 @@
-import { Box, Divider, Grid, Stack, TextField } from "@mui/material";
+import {
+  Box,
+  Button,
+  Checkbox,
+  Divider,
+  Grid,
+  Stack,
+  TextField,
+  Typography,
+} from "@mui/material";
 import AccountThumbnail from "../signUp/components/AccountThumbnail.jsx";
 import AccountHeader from "../signUp/components/AccountHeader";
-import AccountInfoAndNavigation from "../signUp/components/AccountInfoAndNavigation.jsx";
 import { useForm } from "react-hook-form";
 import { schema, Schema } from "../accountValidation/types/schema";
 import { zodResolver } from "@hookform/resolvers/zod";
+import Link from "next/link.js";
 
 export default function LogIn() {
   const {
@@ -44,13 +53,18 @@ export default function LogIn() {
                   helperText={errors.password?.message}
                 />
               </Stack>
-              <AccountInfoAndNavigation
-                terms={"Remember Me"}
-                history={"Haven not Account? "}
-                accountSwitch={"Sign up"}
-                path={"./signUp"}
-                registration={"LOG IN"}
-              />
+
+              <Stack direction={"row"} spacing={1} alignItems={"center"}>
+                <Checkbox />
+                <Typography> Remember Me</Typography>
+              </Stack>
+              <Button variant="contained">LOG IN</Button>
+              <Stack direction={"row"} justifyContent={"center"} spacing={1}>
+                <Typography>Haven not Account?</Typography>
+                <Link href={"./signUp"} style={{ textDecoration: "none" }}>
+                  <Typography> Sign up</Typography>
+                </Link>
+              </Stack>
             </Stack>
           </Box>
         </Grid>

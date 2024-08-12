@@ -11,7 +11,6 @@ import {
 } from "@mui/material";
 import AccountThumbnail from "./components/AccountThumbnail.jsx";
 import AccountHeader from "./components/AccountHeader";
-// import AccountInfoAndNavigation from "./components/AccountInfoAndNavigation.jsx";
 import { Schema } from "../accountValidation/types/schema";
 import Link from "next/link.js";
 import axios from "axios";
@@ -127,14 +126,6 @@ export default function SignUp() {
                     }
                   />
                 </Stack>
-                {/* <AccountInfoAndNavigation
-                terms={"I Accept Tearms and Conditions"}
-                history={"Already have account! "}
-                registration={"SIGN UP"}
-                path={"./login"}
-                accountSwitch={"Login"}
-                handleSubmit={handleSubmit}
-              /> */}
                 <Stack direction={"row"} spacing={1} alignItems={"center"}>
                   <Checkbox />
                   <Typography>I Accept Tearms and Conditions</Typography>
@@ -142,7 +133,6 @@ export default function SignUp() {
                 <Button type="submit" variant="contained">
                   SIGN UP
                 </Button>
-                {/* <Input type="submit" /> */}
                 <Stack direction={"row"} justifyContent={"center"} spacing={1}>
                   <Typography>Already have account!</Typography>
                   <Link href={"./login"} style={{ textDecoration: "none" }}>

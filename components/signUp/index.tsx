@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { use, useState } from "react";
 import {
   Box,
   Button,
@@ -11,9 +11,10 @@ import {
 } from "@mui/material";
 import AccountThumbnail from "./components/AccountThumbnail.jsx";
 import AccountHeader from "./components/AccountHeader";
-import { Schema } from "../accountValidation/types/schema";
+import { schema, Schema } from "../accountValidation/types/schema";
 import Link from "next/link.js";
 import axios from "axios";
+import { useRouter } from "next/router.js";
 
 export default function SignUp() {
   const [usersData, setUsersData] = useState<Schema>({
@@ -23,18 +24,25 @@ export default function SignUp() {
     location: "",
     phoneNumber: "",
   });
+  const router = useRouter();
 
   async function handleSubmit(event: React.ChangeEvent<HTMLInputElement>) {
     event.preventDefault();
-    try {
-      const body = { usersData };
-      const response = await fetch("http://localhost:5000/api/user", {
-        method: "POST",
-        headers: { "Connection-Type": "application/json" },
-        body: JSON.stringify(body),
-      });
 
+    try {
+      const response = await axios.post("http://localhost:8080/api/user", {
+        usersData,
+      });
       console.log(response);
+
+      const token = response.data.token;
+      localStorage.setItem("token", token);
+
+      if (response.data.data.role === "ADMIN") {
+        router.push("/admin/dashboard");
+      } else {
+        router.push("/");
+      }
     } catch (err) {
       console.log(err);
     }

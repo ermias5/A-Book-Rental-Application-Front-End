@@ -1,4 +1,4 @@
-import React, { use, useState } from "react";
+import React, { useState } from "react";
 import {
   Box,
   Button,
@@ -30,19 +30,28 @@ export default function SignUp() {
     event.preventDefault();
 
     try {
-      const response = await axios.post("http://localhost:8080/api/user", {
-        usersData,
-      });
+      // const response = await axios.post("http://localhost:8080/api/user", {
+      const response = await axios.post(
+        "https://book-rental-backend-xi.vercel.app/api/user",
+        {
+          // const response = await axios.post(
+          // "https://book-rental-backend-xi.vercel.app/api/user",
+          //   {
+          usersData,
+        }
+      );
       console.log(response);
 
       const token = response.data.token;
       localStorage.setItem("token", token);
 
-      if (response.data.data.role === "ADMIN") {
-        router.push("/admin/dashboard");
-      } else {
-        router.push("/");
-      }
+      router.push("/login");
+
+      // if (response.data.data.role === "ADMIN") {
+      //   router.push("/admin/dashboard");
+      // } else {
+      //   router.push("/");
+      // }
     } catch (err) {
       console.log(err);
     }

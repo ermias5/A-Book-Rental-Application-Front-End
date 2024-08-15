@@ -1,17 +1,49 @@
-import React from "react";
-import { Stack, Typography } from "@mui/material";
+import React, { useEffect, useState } from "react";
+import { Button, List, ListItem, Stack, Typography } from "@mui/material";
 import NotificationsNoneOutlinedIcon from "@mui/icons-material/NotificationsNoneOutlined";
 import SettingsOutlinedIcon from "@mui/icons-material/SettingsOutlined";
 import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
+import axios from "axios";
 
 export default function SideMenuInfo({ acctCircleTitle }) {
+  const [notifications, setNotifications] = useState([]);
+
+  function handleNotifications() {
+    <List>
+      {notifications.map((notification) => (
+        <ListItem key={notification.id}>{notification.message}</ListItem>
+      ))}
+    </List>;
+  }
+
+  useEffect(() => {
+    try {
+      const fetchNotifications = async () => {
+        const response = await axios.get(
+          // "http://localhost:8080/api/admin/notifications"
+          "https://book-rental-backend-xi.vercel.app/api/admin/notifications"
+        );
+        // setNotifications(response);
+      };
+
+      fetchNotifications();
+    } catch (err) {
+      console.log(err);
+    }
+  }, []);
+
   return (
     <Stack>
       <Stack spacing={4} sx={{ pl: "1rem" }}>
-        <Stack direction={"row"} spacing={1}>
+        {/* <Stack direction={"row"} spacing={1}>
           <NotificationsNoneOutlinedIcon sx={{ color: "white" }} />
           <Typography color={"white"}>Notification</Typography>
-        </Stack>
+        </Stack> */}
+
+        <Button onClick={handleNotifications}>
+          <NotificationsNoneOutlinedIcon sx={{ color: "white" }} />
+          <Typography color={"white"}>Notification</Typography>
+        </Button>
         <Stack direction={"row"} spacing={1}>
           <SettingsOutlinedIcon sx={{ color: "white" }} />
           <Typography color={"white"}>Setting</Typography>

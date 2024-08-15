@@ -34,9 +34,6 @@ export default function SignUp() {
       const response = await axios.post(
         "https://book-rental-backend-xi.vercel.app/api/user",
         {
-          // const response = await axios.post(
-          // "https://book-rental-backend-xi.vercel.app/api/user",
-          //   {
           usersData,
         }
       );
@@ -46,12 +43,6 @@ export default function SignUp() {
       localStorage.setItem("token", token);
 
       router.push("/login");
-
-      // if (response.data.data.role === "ADMIN") {
-      //   router.push("/admin/dashboard");
-      // } else {
-      //   router.push("/");
-      // }
     } catch (err) {
       console.log(err);
     }

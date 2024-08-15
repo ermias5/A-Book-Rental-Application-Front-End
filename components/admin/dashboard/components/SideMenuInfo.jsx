@@ -20,8 +20,8 @@ export default function SideMenuInfo({ acctCircleTitle }) {
     try {
       const fetchNotifications = async () => {
         const response = await axios.get(
-          "http://localhost:8080/api/admin/notifications"
-          // "https://book-rental-backend-xi.vercel.app/api/admin/notifications"
+          // "http://localhost:8080/api/admin/notifications"
+          "https://book-rental-backend-xi.vercel.app/api/admin/notifications"
         );
         // setNotifications(response);
       };

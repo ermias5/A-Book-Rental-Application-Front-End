@@ -30,9 +30,11 @@ export default function SignUp() {
     event.preventDefault();
 
     try {
-      // const response = await axios.post("http://localhost:8080/api/user", {
+      // const response = await axios.post(
+      //   "http://localhost:8080/api/user",
       const response = await axios.post(
         "https://book-rental-backend-xi.vercel.app/api/user",
+
         {
           usersData,
         }

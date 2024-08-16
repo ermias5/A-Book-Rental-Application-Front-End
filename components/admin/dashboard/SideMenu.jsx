@@ -5,14 +5,14 @@ import SideMenuBody from "./components/SideMenuBody";
 import SideMenuInfo from "./components/SideMenuInfo";
 import LogOut from "./components/LogOut";
 
-export default function SideMenu() {
+export default function SideMenu({ loginAsTitle, booksForAdmin }) {
   return (
     <Container sx={{ bgcolor: "#171B36", borderRadius: "1rem" }}>
       <SideMenuHeader />;
       <Divider sx={{ m: "1rem 0 1rem 0", borderColor: "white" }} />
-      <SideMenuBody title={"Books"} />
+      <SideMenuBody title={booksForAdmin} />
       <Divider sx={{ m: "2rem 0", borderColor: "white" }} />
-      <SideMenuInfo acctCircleTitle={"Login as Book Owner"} />
+      <SideMenuInfo acctCircleTitle={loginAsTitle} />
       <Divider sx={{ m: "2rem 0 5rem 0", borderColor: "white" }} />
       <LogOut />
     </Container>

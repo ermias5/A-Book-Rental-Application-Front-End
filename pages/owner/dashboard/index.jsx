@@ -1,9 +1,10 @@
-import React from 'react'
+import OwnerDashboard from "../../../components/owner/dashboard";
+import React from "react";
 
-export default function OwnerDashboard() {
+export default function OwnerDashboardPage() {
   return (
-    <div>
-      Owner dashboard
-    </div>
-  )
+    <>
+      <OwnerDashboard />
+    </>
+  );
 }

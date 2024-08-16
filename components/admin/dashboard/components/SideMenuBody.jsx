@@ -6,29 +6,30 @@ import PermIdentityIcon from "@mui/icons-material/PermIdentity";
 import ChangeHistoryIcon from "@mui/icons-material/ChangeHistory";
 
 export default function SideMenuBody({ title }) {
+  function handleOwners() {}
   return (
     <Stack spacing={4}>
       <Button variant="contained" sx={{ gap: 1 }}>
-        <SpaceDashboardIcon sx={{ ml: "-100px" }} />
+        <SpaceDashboardIcon sx={{ ml: "-7rem" }} />
         <Typography color={"white"}>Dashboard</Typography>
       </Button>
-      <Stack spacing={4} sx={{ pl: "1rem" }}>
-        <Stack direction={"row"} spacing={1}>
-          <AutoStoriesIcon sx={{ color: "white" }} />
+      <Stack spacing={4}>
+        <Button variant="contained" sx={{ gap: 1 }}>
+          <AutoStoriesIcon sx={{ ml: "-7rem" }} />
           <Typography color={"white"}>{title}</Typography>
-        </Stack>
-        <Stack direction={"row"} spacing={1}>
-          <PermIdentityIcon sx={{ color: "white" }} />
+        </Button>
+        <Button spacing={1} onClick={handleOwners}>
+          <PermIdentityIcon sx={{ color: "white", ml: "-7rem" }} />
           <Typography color={"white"}>Owners</Typography>
-        </Stack>
-        <Stack direction={"row"} spacing={1}>
-          <ChangeHistoryIcon sx={{ color: "white" }} />
+        </Button>
+        <Button spacing={1}>
+          <ChangeHistoryIcon sx={{ color: "white", ml: "-7rem" }} />
           <Typography color={"white"}>Other</Typography>
-        </Stack>
-        <Stack direction={"row"} spacing={1}>
-          <ChangeHistoryIcon sx={{ color: "white" }} />
+        </Button>
+        <Button spacing={1}>
+          <ChangeHistoryIcon sx={{ color: "white", ml: "-7rem" }} />
           <Typography color={"white"}>Other</Typography>
-        </Stack>
+        </Button>
       </Stack>
     </Stack>
   );

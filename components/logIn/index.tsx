@@ -30,9 +30,9 @@ export default function LogIn() {
   const [userData, setUserData] = useState<Schema>({
     email: "",
     password: "",
-    confirmPassword: "",
-    location: "",
-    phoneNumber: "",
+    // confirmPassword: "",
+    // location: "",
+    // phoneNumber: "",
   });
   const router = useRouter();
 

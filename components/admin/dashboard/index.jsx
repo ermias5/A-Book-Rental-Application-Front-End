@@ -1,47 +1,27 @@
 import React, { useEffect, useState } from "react";
-// import SideMenu from "./components/SideMenu";
-import { Box, Grid, Typography } from "@mui/material";
+import { Grid } from "@mui/material";
 import SideMenu from "./SideMenu";
-import supabase from "../../../config/supabaseClient";
+import OwnersTable from "./components/navigations/owners";
+import BooksTable from "./components/navigations/books";
+import AdminDashboardData from "./components/navigations/dashbord";
 
 export default function AdminDashboard() {
-  // const [fetchError, setFetchError] = useState(null);
-  // const [users, setUsers] = useState(null);
+  const [dashboardContent, setDashboardContent] = useState({
+    selectedContent: undefined,
+  });
 
-  // useEffect(() => {
-  //   const fetchUsers = async () => {
-  //     const { data, error } = await supabase.from("User").select();
-  //     console.log("data from the backend", data);
-
-  //     if (error) {
-  //       setFetchError("couldn't fetch users");
-  //       setUsers(null);
-  //       console.log("errorFetchingUserData",error);
-  //     }
-  //     if (data) {
-  //       setUsers(data);
-  //       setFetchError(null);
-  //     }
-  //   };
-
-  //   fetchUsers();
-  // }, []);
   return (
-    <Grid container direction={"row"} gap={2}>
+    <Grid container direction={"row"} sx={{ bgcolor: "#f2f0f0" }}>
       <Grid item xs={2.5}>
-        <SideMenu />
+        <SideMenu
+          loginAsTitle={"Login as Book Owner"}
+          booksForAdmin={"Books"}
+        />
       </Grid>
-      <Grid item xs sx={{ bgcolor: "violet" }}>
-        {/* <Box height={"100vh"}>
-          {fetchError && <Typography>{fetchError}</Typography>}
-          {users && (
-            <Box>
-              {users.map((user) => (
-                <Typography>{user.name}</Typography>
-              ))}
-            </Box>
-          )}
-        </Box> */}
+      <Grid item xs>
+        <AdminDashboardData />
+        {/* <BooksTable /> */}
+        {/* <OwnersTable /> */}
       </Grid>
     </Grid>
   );

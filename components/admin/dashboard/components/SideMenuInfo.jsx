@@ -16,21 +16,21 @@ export default function SideMenuInfo({ acctCircleTitle }) {
     </List>;
   }
 
-  useEffect(() => {
-    try {
-      const fetchNotifications = async () => {
-        const response = await axios.get(
-          // "http://localhost:8080/api/admin/notifications"
-          "https://book-rental-backend-xi.vercel.app/api/admin/notifications"
-        );
-        // setNotifications(response);
-      };
+  // useEffect(() => {
+  //   try {
+  //     const fetchNotifications = async () => {
+  //       // const response = await axios.get(
+  //         // "http://localhost:8080/api/admin/notifications"
+  //         // "https://book-rental-backend-xi.vercel.app/api/admin/notifications"
+  //       );
+  //       // setNotifications(response);
+  //     };
 
-      fetchNotifications();
-    } catch (err) {
-      console.log(err);
-    }
-  }, []);
+  //     fetchNotifications();
+  //   } catch (err) {
+  //     console.log(err);
+  //   }
+  // }, []);
 
   return (
     <Stack>
@@ -41,17 +41,17 @@ export default function SideMenuInfo({ acctCircleTitle }) {
         </Stack> */}
 
         <Button onClick={handleNotifications}>
-          <NotificationsNoneOutlinedIcon sx={{ color: "white" }} />
+          <NotificationsNoneOutlinedIcon sx={{ color: "white", ml: "-5rem" }} />
           <Typography color={"white"}>Notification</Typography>
         </Button>
-        <Stack direction={"row"} spacing={1}>
-          <SettingsOutlinedIcon sx={{ color: "white" }} />
+        <Button spacing={1}>
+          <SettingsOutlinedIcon sx={{ color: "white", ml: "-7rem" }} />
           <Typography color={"white"}>Setting</Typography>
-        </Stack>
-        <Stack direction={"row"} spacing={1}>
+        </Button>
+        <Button spacing={1}>
           <AccountCircleOutlinedIcon sx={{ color: "white" }} />
           <Typography color={"white"}>{acctCircleTitle}</Typography>
-        </Stack>
+        </Button>
       </Stack>
     </Stack>
   );

@@ -16,7 +16,7 @@ export const schema = z
 
     confirmPassword: z
       .string()
-      .min(4, { message: "Confirm password is required" }),
+      .min(4, { message: "Confirm password is required" }).optional(),
     location: z.string().optional(),
 
     phoneNumber: z

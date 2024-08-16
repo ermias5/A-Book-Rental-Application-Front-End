@@ -47,7 +47,10 @@ export default function LogIn() {
           userData,
         }
       );
-      console.log(response);
+      console.log("response from logged in user", response);
+
+      const token = response.data.token;
+      localStorage.setItem("token", token);
 
       // const token = response.data.token;
       // localStorage.setItem("token", token);

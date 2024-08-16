@@ -19,9 +19,9 @@ export default function AdminDashboard() {
         />
       </Grid>
       <Grid item xs>
-        <AdminDashboardData />
+        {/* <AdminDashboardData /> */}
         {/* <BooksTable /> */}
-        {/* <OwnersTable /> */}
+        <OwnersTable />
       </Grid>
     </Grid>
   );

@@ -14,24 +14,20 @@ export default function SearchBar() {
       display="flex"
       size=""
       sx={{
-        // minWidth: "100ch",
         minWidth: { xs: "none", md: "100ch" },
         flex: "1",
         display: "flex",
       }}
     >
       <OutlinedInput
-        placeholder="Search For Everything"
-        // placeholder={{ xs: "Search", sm: "Search For Everything" }}
+        placeholder="Please Sign Up and test Application"
         sx={{
           borderRadius: "5rem",
-          // placeholder: { xs: "Search", sm: "Search For Everything" },
         }}
         endAdornment={
           <InputAdornment position="end">
             <IconButton
               aria-label="search"
-              // onClick={handleSearch}
               edge="end"
               sx={{
                 width: "2.5rem",

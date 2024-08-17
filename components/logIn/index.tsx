@@ -10,30 +10,19 @@ import {
 } from "@mui/material";
 import AccountThumbnail from "../signUp/components/AccountThumbnail.jsx";
 import AccountHeader from "../signUp/components/AccountHeader";
-import { useForm } from "react-hook-form";
-import { schema, Schema } from "../accountValidation/types/schema";
-import { zodResolver } from "@hookform/resolvers/zod";
+import { Schema } from "../accountValidation/types/schema";
 import Link from "next/link.js";
 import { useRouter } from "next/router.js";
 import { useState } from "react";
 import axios from "axios";
+import ENV_CONFIG from "../../config/local.config.js";
 
 export default function LogIn() {
-  // const {
-  //   register,
-  //   formState: { errors },
-  // } = useForm<Schema>({
-  //   mode: "all",
-  //   resolver: zodResolver(schema),
-  // });
-
   const [userData, setUserData] = useState<Schema>({
     email: "",
     password: "",
-    // confirmPassword: "",
-    // location: "",
-    // phoneNumber: "",
   });
+
   const router = useRouter();
 
   async function handleSubmit(event: React.ChangeEvent<HTMLInputElement>) {
@@ -41,24 +30,24 @@ export default function LogIn() {
 
     try {
       const response = await axios.post(
-        // "http://localhost:8080/api/user/login",
-        "https://book-rental-backend-xi.vercel.app/api/user/login",
+        `${ENV_CONFIG.NEXT_PUBLIC}/api/user/login`,
         {
           userData,
         }
       );
-      console.log("response from logged in user", response);
+
+      console.log("logged in staff", response);
 
       const token = response.data.token;
       localStorage.setItem("token", token);
 
-      // const token = response.data.token;
-      // localStorage.setItem("token", token);
-
-      // router.push("/login");
-
       if (response.data.user.role === "ADMIN") {
         router.push("/admin/dashboard");
+      } else if (
+        response.data.user.role === "OWNER" &&
+        response.data.user.isApproved === true
+      ) {
+        router.push(`/owner/ ${response.data.user.id}`);
       } else {
         router.push("/");
       }

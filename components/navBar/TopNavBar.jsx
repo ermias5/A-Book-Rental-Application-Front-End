@@ -27,7 +27,7 @@ export default function TopNavBar() {
           >
             <Grid item>
               <Typography color={"#f1641e"} fontSize={"2rem"}>
-                Etsy
+                2F
               </Typography>
             </Grid>
             <Grid item>
@@ -41,7 +41,7 @@ export default function TopNavBar() {
             <Box display={{ xs: "none", sm: "flex" }}>
               <CustomButton>
                 <Link href={"/signUp"} style={{ textDecoration: "none" }}>
-                  <Typography>Sign in</Typography>
+                  <Typography>Sign up</Typography>
                 </Link>
               </CustomButton>
             </Box>

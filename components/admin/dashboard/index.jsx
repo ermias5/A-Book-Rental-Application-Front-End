@@ -6,9 +6,11 @@ import BooksTable from "./components/navigations/books";
 import AdminDashboardData from "./components/navigations/dashbord";
 
 export default function AdminDashboard() {
-  const [dashboardContent, setDashboardContent] = useState({
-    selectedContent: undefined,
-  });
+  const [activeMenu, setActiveMenu] = useState("dashboard");
+
+  function handleMenuClick(menu) {
+    setActiveMenu(menu);
+  }
 
   return (
     <Grid container direction={"row"} sx={{ bgcolor: "#f2f0f0" }}>
@@ -16,12 +18,14 @@ export default function AdminDashboard() {
         <SideMenu
           loginAsTitle={"Login as Book Owner"}
           booksForAdmin={"Books"}
+          handleMenuClick={handleMenuClick}
+          // activeMenu={activeMenu}
         />
       </Grid>
-      <Grid item xs>
-        {/* <AdminDashboardData /> */}
-        {/* <BooksTable /> */}
-        <OwnersTable />
+      <Grid item xs={9.5}>
+        {activeMenu === "dashboard" && <AdminDashboardData />}
+        {activeMenu === "books" && <BooksTable />}
+        {activeMenu === "owners" && <OwnersTable />}
       </Grid>
     </Grid>
   );

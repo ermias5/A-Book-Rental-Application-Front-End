@@ -1,75 +1,49 @@
 import React, { useMemo, useState, useEffect } from "react";
-import { Stack, Typography } from "@mui/material";
+import { Box, Container, Stack, Typography } from "@mui/material";
 import {
   MaterialReactTable,
   useMaterialReactTable,
 } from "material-react-table";
 import axios from "axios";
-import { Email } from "@mui/icons-material";
+import ENV_CONFIG from "../../../../../../config/local.config";
+import VisibilityIcon from "@mui/icons-material/Visibility";
+import DeleteIcon from "@mui/icons-material/Delete";
+// import { red } from "@mui/material/colors";
 
-// const data = [
-//   {
-//     name: {
-//       firstName: "John",
-//       lastName: "Doe",
-//     },
-//     address: "261 Erdman Ford",
-//     city: "East Daphne",
-//     state: "Kentucky",
-//   },
-//   {
-//     name: {
-//       firstName: "Jane",
-//       lastName: "Doe",
-//     },
-//     address: "769 Dominic Grove",
-//     city: "Columbus",
-//     state: "Ohio",
-//   },
-//   {
-//     name: {
-//       firstName: "Joe",
-//       lastName: "Doe",
-//     },
-//     address: "566 Brakus Inlet",
-//     city: "South Linda",
-//     state: "West Virginia",
-//   },
-//   {
-//     name: {
-//       firstName: "Kevin",
-//       lastName: "Vandy",
-//     },
-//     address: "722 Emie Stream",
-//     city: "Lincoln",
-//     state: "Nebraska",
-//   },
-//   {
-//     name: {
-//       firstName: "Joshua",
-//       lastName: "Rolluffs",
-//     },
-//     address: "32188 Larkin Turnpike",
-//     city: "Charleston",
-//     state: "South Carolina",
-//   },
-// ];
 export default function OwnersTable() {
   const [newOwners, setNewOwners] = useState([]);
+  console.log("new owners", newOwners);
+
+  const token = localStorage.getItem("token");
+
+  const handleApprove = async (ownerId) => {
+    try {
+      const response = await axios.put(
+        `${ENV_CONFIG.NEXT_PUBLIC}/api/user/updateOwner`,
+        { ownerId },
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      );
+
+      setNewOwners((prevData) => [
+        ...prevData.filter((owner) => owner.id !== ownerId),
+        response.data,
+      ]);
+    } catch (error) {
+      console.error("Error approving owner:", error);
+    }
+  };
 
   useEffect(() => {
     const fetchNewOwners = async () => {
       try {
-        const token = localStorage.getItem("token");
-
         const response = await axios.get(
-          // "http://localhost:8080/api/user/users",
-          "https://book-rental-backend-xi.vercel.app/api/user/users",
+          `${ENV_CONFIG.NEXT_PUBLIC}/api/user/users`,
           {
             headers: { Authorization: `Bearer ${token}` },
           }
         );
-        console.log("z resonse", response);
 
         setNewOwners(response.data);
       } catch (err) {
@@ -87,24 +61,64 @@ export default function OwnersTable() {
       {
         accessorKey: "id",
         header: "No",
-        // size: 150,
-      },
-      {
-        accessorKey: "name",
-        header: "Owner",
-        // size: 150,
+        size: 50,
+        minSize: 25,
+        maxSize: 75,
       },
       {
         accessorKey: "email",
+        header: "Owner",
+        size: 50,
+        minSize: 25,
+        maxSize: 75,
+      },
+      {
+        accessorKey: "name",
         header: "Upload",
       },
       {
-        accessorKey: "location",
+        accessorKey: "phoneNumber",
         header: "Status",
+        size: 50,
+        minSize: 25,
+        maxSize: 75,
+      },
+      {
+        accessorKey: "location",
+        header: "Location",
       },
       {
         accessorKey: "isApproved",
         header: "Action",
+        Cell: ({ row }) => (
+          <Stack spacing={2} direction={"row"}>
+            <VisibilityIcon fontSize="small" />
+            <DeleteIcon fontSize="small" sx={{ color: "red" }} color="red" />
+          </Stack>
+        ),
+        size: 50,
+        minSize: 25,
+        maxSize: 75,
+      },
+      {
+        accessorKey: "role",
+        header: "",
+        Cell: ({ row }) => (
+          <Box
+            component={"button"}
+            sx={{
+              borderRadius: "4px",
+              height: "30px",
+              width: "100px",
+              bgcolor: row.original.isApproved === true ? "#563bf1" : "#bebbc0",
+              border: "none",
+              color: "white",
+            }}
+            onClick={() => handleApprove(row.original.id)}
+          >
+            {row.original.isApproved ? "Approved" : "Approve"}
+          </Box>
+        ),
       },
     ],
     []
@@ -128,9 +142,26 @@ export default function OwnersTable() {
   });
 
   return (
-    <Stack spacing={2}>
-      <Typography>Admin/Owners</Typography>
-      <MaterialReactTable table={table} />
-    </Stack>
+    <Container maxWidth={"inherit"}>
+      <Stack spacing={2}>
+        <Stack sx={{ pt: "5px" }}>
+          <Typography
+            sx={{ bgcolor: "#fff", p: ".5rem", borderRadius: ".5rem" }}
+          >
+            Admin/Owners
+          </Typography>
+        </Stack>
+
+        <MaterialReactTable
+          table={table}
+          enableColumnResizing
+          muiTableBodyRowProps={({ row }) => ({
+            sx: {
+              height: "30px", // Set the desired row height
+            },
+          })}
+        />
+      </Stack>
+    </Container>
   );
 }

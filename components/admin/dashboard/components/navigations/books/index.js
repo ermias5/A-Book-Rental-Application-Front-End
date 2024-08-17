@@ -1,5 +1,5 @@
 import React, { useMemo } from "react";
-import { Stack, Typography } from "@mui/material";
+import { Container, Stack, Typography } from "@mui/material";
 import {
   MaterialReactTable,
   useMaterialReactTable,
@@ -65,23 +65,6 @@ export default function BooksTable() {
         header: "Author",
         size: 10,
       },
-      //   {
-      //     accessorKey: "name.firstname",
-      //     header: "Owner",
-      //     size:100
-      //   },
-      //   {
-      //     accessorKey: "name.firstname",
-      //     header: "Catagory",
-      //   },
-      //   {
-      //     accessorKey: "name.firstname",
-      //     header: "Bool Name",
-      //   },
-      //   {
-      //     accessorKey: "name.firstname",
-      //     header: "Status",
-      //   },
     ],
     []
   );
@@ -92,9 +75,17 @@ export default function BooksTable() {
   });
 
   return (
-    <Stack spacing={2}>
-      <Typography>Admin/Owners</Typography>
-      <MaterialReactTable table={table} />
-    </Stack>
+    <Container>
+      <Stack spacing={2}>
+        <Stack sx={{ pt: "5px" }}>
+          <Typography
+            sx={{ bgcolor: "#fff", p: ".5rem", borderRadius: ".5rem" }}
+          >
+            Admin/Owners
+          </Typography>
+        </Stack>
+        <MaterialReactTable table={table} />
+      </Stack>
+    </Container>
   );
 }

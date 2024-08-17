@@ -11,10 +11,11 @@ import {
 } from "@mui/material";
 import AccountThumbnail from "./components/AccountThumbnail.jsx";
 import AccountHeader from "./components/AccountHeader";
-import { schema, Schema } from "../accountValidation/types/schema";
+import { Schema } from "../accountValidation/types/schema";
 import Link from "next/link.js";
 import axios from "axios";
 import { useRouter } from "next/router.js";
+import ENV_CONFIG from "../../config/local.config.js";
 
 export default function SignUp() {
   const [usersData, setUsersData] = useState<Schema>({
@@ -33,13 +34,14 @@ export default function SignUp() {
       // const response = await axios.post(
       //   "http://localhost:8080/api/user",
       const response = await axios.post(
-        "https://book-rental-backend-xi.vercel.app/api/user",
+        // "https://book-rental-backend-xi.vercel.app/api/user",
+        `${ENV_CONFIG.NEXT_PUBLIC}/api/user`,
 
         {
           usersData,
         }
       );
-      console.log(response);
+      console.log("sined up user", response);
 
       const token = response.data.token;
       localStorage.setItem("token", token);

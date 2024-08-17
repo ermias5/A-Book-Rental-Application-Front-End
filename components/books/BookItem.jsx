@@ -17,7 +17,7 @@ export default function BookItem(props) {
   const router = useRouter();
 
   function showDetailsHandler() {
-    router.push("/" + props.id);
+    router.push("/bookDetail" + props.id);
   }
   return (
     <Grid item xs={6} sm={2}>

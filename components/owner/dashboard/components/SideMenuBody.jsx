@@ -6,7 +6,7 @@ import ChangeHistoryIcon from "@mui/icons-material/ChangeHistory";
 
 export default function SideMenuBody() {
   return (
-    <Stack spacing={4} width={"100%"}>
+    <Stack spacing={4}>
       <Button
         sx={{
           gap: 1,

@@ -5,12 +5,12 @@ import SideMenuInfo from "./components/SideMenuInfo";
 import LogOut from "../../admin/dashboard/components/LogOut";
 import SideMenuBody from "./components/SideMenuBodyOwner";
 
-export default function OwnerSideMenu() {
+export default function OwnerSideMenu({ handleActiveMenuItem }) {
   return (
     <Container sx={{ bgcolor: "#171B36", borderRadius: "1rem", width: "100%" }}>
       <SideMenuHeader />;
       <Divider sx={{ m: "1rem 0 1rem 0", borderColor: "white" }} />
-      <SideMenuBody />
+      <SideMenuBody handleActiveMenuItem={handleActiveMenuItem} />
       <Divider sx={{ m: "2rem 0", borderColor: "white" }} />
       <SideMenuInfo />
       <Divider sx={{ m: "2rem 0 5rem 0", borderColor: "white" }} />

@@ -26,7 +26,7 @@ export default function SideMenuBody() {
           },
         }}
       >
-        <AutoStoriesIcon sx={{ ml: "-5rem", color: "white" }} />
+        <AutoStoriesIcon sx={{ ml: "-4rem", color: "white" }} />
         <Typography color={"white"}>Book Upload</Typography>
       </Button>
       <Button spacing={1}>

@@ -19,17 +19,17 @@ export default function SideMenuInfo() {
   return (
     <Stack>
       <Stack spacing={4} sx={{ pl: "1rem", width: "100%" }}>
-        <Button onClick={handleNotifications}>
-          <NotificationsNoneOutlinedIcon sx={{ color: "white", ml: "-5rem" }} />
+        <Button onClick={handleNotifications} sx={{ gap: "4px" }}>
+          <NotificationsNoneOutlinedIcon sx={{ color: "white", ml: "-7rem" }} />
           <Typography color={"white"}>Notification</Typography>
         </Button>
-        <Button spacing={1}>
-          <SettingsOutlinedIcon sx={{ color: "white", ml: "-7rem" }} />
+        <Button sx={{ gap: "4px" }}>
+          <SettingsOutlinedIcon sx={{ color: "white", ml: "-9.5rem" }} />
           <Typography color={"white"}>Setting</Typography>
         </Button>
-        <Button spacing={1}>
+        <Button ssx={{ gap: "8px" }}>
           <AccountCircleOutlinedIcon sx={{ color: "white", ml: "-5rem" }} />
-          <Typography color={"white"}>Login As Owner</Typography>
+          <Typography color={"white"} sx={{ml:'8px'}}>Login As Owner</Typography>
         </Button>
       </Stack>
     </Stack>

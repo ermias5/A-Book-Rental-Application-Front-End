@@ -5,7 +5,7 @@ import SideMenuInfo from "./components/SideMenuInfo";
 import LogOut from "../../admin/dashboard/components/LogOut";
 import SideMenuBody from "./components/sideMenuBody";
 
-export default function OwerSideMenu() {
+export default function OwnerSideMenu() {
   return (
     <Container sx={{ bgcolor: "#171B36", borderRadius: "1rem", width: "100%" }}>
       <SideMenuHeader />;

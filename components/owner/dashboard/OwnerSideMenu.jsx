@@ -3,7 +3,7 @@ import React from "react";
 import SideMenuHeader from "../../admin/dashboard/components/MenuHeader";
 import SideMenuInfo from "./components/SideMenuInfo";
 import LogOut from "../../admin/dashboard/components/LogOut";
-import SideMenuBody from "./components/sideMenuBody";
+import SideMenuBody from "./components/SideMenuBodyOwner";
 
 export default function OwnerSideMenu() {
   return (

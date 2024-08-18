@@ -7,11 +7,7 @@ export default function OwnerDashboard() {
       <Grid item xs={2.5}>
         <OwnerSideMenu />
       </Grid>
-      <Grid item xs={9.5}>
-        {/* {activeMenu === "dashboard" && <AdminDashboardData />}
-        {activeMenu === "books" && <BooksTable />}
-        {activeMenu === "owners" && <OwnersTable />} */}
-      </Grid>
+      <Grid item xs={9.5}></Grid>
     </Grid>
   );
 }

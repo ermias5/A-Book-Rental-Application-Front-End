@@ -14,12 +14,10 @@ export default function SideMenuBody() {
             bgcolor: "blue",
           },
         }}
-        // onClick={() => handleMenuClick("dashboard")}
       >
         <SpaceDashboardIcon sx={{ ml: "-5rem", color: "white" }} />
         <Typography color={"white"}>Dashboard</Typography>
       </Button>
-      {/* <Stack spacing={4}> */}
       <Button
         sx={{
           gap: 1,
@@ -27,7 +25,6 @@ export default function SideMenuBody() {
             bgcolor: "blue",
           },
         }}
-        //   onClick={() => handleMenuClick("books")}
       >
         <AutoStoriesIcon sx={{ ml: "-5rem", color: "white" }} />
         <Typography color={"white"}>Book Upload</Typography>
@@ -40,7 +37,6 @@ export default function SideMenuBody() {
         <ChangeHistoryIcon sx={{ color: "white", ml: "-7rem" }} />
         <Typography color={"white"}>Other</Typography>
       </Button>
-      {/* </Stack> */}
     </Stack>
   );
 }

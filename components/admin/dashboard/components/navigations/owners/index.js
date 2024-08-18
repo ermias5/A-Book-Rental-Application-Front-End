@@ -8,7 +8,6 @@ import axios from "axios";
 import ENV_CONFIG from "../../../../../../config/local.config";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import DeleteIcon from "@mui/icons-material/Delete";
-// import { red } from "@mui/material/colors";
 
 export default function OwnersTable() {
   const [newOwners, setNewOwners] = useState([]);

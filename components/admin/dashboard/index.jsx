@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Grid } from "@mui/material";
 import SideMenu from "./SideMenu";
 import OwnersTable from "./components/navigations/owners";

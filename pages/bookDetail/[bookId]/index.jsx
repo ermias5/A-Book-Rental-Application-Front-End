@@ -1,4 +1,4 @@
-import TopNavBar from "../../components/navBar/TopNavBar";
+import TopNavBar from "../../../components/navBar/TopNavBar";
 import { Grid } from "@mui/material";
 import { useRouter } from "next/router";
 

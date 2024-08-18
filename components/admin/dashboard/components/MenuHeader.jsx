@@ -5,7 +5,7 @@ import MenuIcon from "@mui/icons-material/Menu";
 
 export default function SideMenuHeader() {
   return (
-    <Stack direction={"row"} spacing={2} sx={{ pt: "1rem" }}>
+    <Stack direction={"row"} spacing={2} sx={{ pt: "1rem", width: "100%" }}>
       <MenuIcon fontSize="medium" sx={{ color: "white" }} />
       <AccountHeader color={"blue"} logoWidth={"38px"} logoHeight={"21px"} />
     </Stack>

@@ -3,6 +3,7 @@ import { patterns } from "../constants/emailPattern";
 
 export const schema = z
   .object({
+    name: z.string().min(1).optional(),
     email: z
       .string()
       .min(1, { message: "Email is required" })
@@ -16,7 +17,8 @@ export const schema = z
 
     confirmPassword: z
       .string()
-      .min(4, { message: "Confirm password is required" }).optional(),
+      .min(4, { message: "Confirm password is required" })
+      .optional(),
     location: z.string().optional(),
 
     phoneNumber: z

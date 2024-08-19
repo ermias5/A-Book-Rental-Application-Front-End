@@ -19,6 +19,7 @@ import ENV_CONFIG from "../../config/local.config.js";
 
 export default function SignUp() {
   const [usersData, setUsersData] = useState<Schema>({
+    name: "",
     email: "",
     password: "",
     confirmPassword: "",
@@ -31,10 +32,7 @@ export default function SignUp() {
     event.preventDefault();
 
     try {
-      // const response = await axios.post(
-      //   "http://localhost:8080/api/user",
       const response = await axios.post(
-        // "https://book-rental-backend-xi.vercel.app/api/user",
         `${ENV_CONFIG.NEXT_PUBLIC}/api/user`,
 
         {
@@ -81,6 +79,16 @@ export default function SignUp() {
             <Box component={"form"} onSubmit={handleSubmit}>
               <Stack spacing={2} mt={"2rem"}>
                 <Stack spacing={2}>
+                  <TextField
+                    type="text"
+                    label="Name"
+                    variant="outlined"
+                    required
+                    value={usersData.name}
+                    onChange={(event) =>
+                      handleInputChange("name", event.target.value)
+                    }
+                  />
                   <TextField
                     id="Email address"
                     type="email"

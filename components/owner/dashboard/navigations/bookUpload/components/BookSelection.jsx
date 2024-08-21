@@ -106,7 +106,7 @@ export default function BookSelection({ handleBookDescriptionData }) {
             onChange={(e) => setCategory(e.target.value)}
           >
             {categories.map((option) => (
-              <MenuItem key={option.id} value={option}>
+              <MenuItem key={option} value={option}>
                 {option}
               </MenuItem>
             ))}

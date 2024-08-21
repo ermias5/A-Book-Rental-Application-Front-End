@@ -5,8 +5,6 @@ import {
   Container,
   Stack,
   Typography,
-  MenuItem,
-  TextField,
   Modal,
 } from "@mui/material";
 // import BookCoverUpload from "./components/BookCoverUpload";
@@ -43,17 +41,14 @@ export default function BookUpload() {
   //   setBookCoverImage(imageFile);
   // };
 
-  console.log("book data", bookData);
-
   useEffect(() => {
-    const token = localStorage.getItem("token"); // Assuming the JWT is stored with the key "jwtToken"
+    const token = localStorage.getItem("token");
     if (token) {
       const decodedToken = jwtDecode(token);
-      console.log("owner data", decodedToken);
       setBookData((prevData) => ({
         ...prevData,
         user: {
-          id: decodedToken.id, // Adjust these fields according to your JWT structure
+          id: decodedToken.id,
           name: decodedToken.name,
           email: decodedToken.email,
         },
@@ -63,17 +58,12 @@ export default function BookUpload() {
 
   async function handleBookSubmit(event) {
     event.preventDefault();
-
-    console.log("book data", bookData);
     try {
-      console.log("data after", bookData);
       const response = await axios.post(
         `${ENV_CONFIG.NEXT_PUBLIC}/api/book/create`,
 
         { bookData }
       );
-
-      console.log("response of creating book", response);
     } catch (e) {
       console.log(e);
     }

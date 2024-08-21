@@ -53,7 +53,7 @@ export default function OwnersTable() {
     fetchNewOwners();
   }, []);
 
-  console.log("newly register owners", newOwners);
+  // console.log("newly register owners", newOwners);
 
   const columns = useMemo(
     () => [

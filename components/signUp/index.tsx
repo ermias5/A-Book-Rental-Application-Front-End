@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import {
+  Alert,
   Box,
   Button,
   Checkbox,
@@ -26,6 +27,8 @@ export default function SignUp() {
     location: "",
     phoneNumber: "",
   });
+  const [message, setMessage] = useState<string | null>();
+  const [error, setError] = useState<string | null>();
   const router = useRouter();
 
   async function handleSubmit(event: React.ChangeEvent<HTMLInputElement>) {
@@ -44,9 +47,16 @@ export default function SignUp() {
       const token = response.data.token;
       localStorage.setItem("token", token);
 
-      router.push("/login");
-    } catch (err) {
-      console.log(err);
+      setMessage("User registerd succesfully redirecting to log in");
+      setError(null);
+      setTimeout(() => {
+        router.push("/login");
+      }, 3000);
+    } catch (err: any) {
+      setError(
+        err.response?.data.message || "Account already exists please log in"
+      );
+      setMessage(null);
     }
   }
 
@@ -76,6 +86,7 @@ export default function SignUp() {
               logoHeight={"33px"}
             />
             <Divider />
+            {message && <Alert severity="success">{message}</Alert>}
             <Box component={"form"} onSubmit={handleSubmit}>
               <Stack spacing={2} mt={"2rem"}>
                 <Stack spacing={2}>
@@ -150,6 +161,7 @@ export default function SignUp() {
                   <Checkbox />
                   <Typography>I Accept Tearms and Conditions</Typography>
                 </Stack>
+                {error && <Alert severity="error">{error}</Alert>}
                 <Button type="submit" variant="contained">
                   SIGN UP
                 </Button>

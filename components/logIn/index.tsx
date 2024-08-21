@@ -1,4 +1,5 @@
 import {
+  Alert,
   Box,
   Button,
   Checkbox,
@@ -22,6 +23,7 @@ export default function LogIn() {
     email: "",
     password: "",
   });
+  const [error, setError] = useState<string | null>(null);
 
   const router = useRouter();
 
@@ -51,7 +53,11 @@ export default function LogIn() {
       } else {
         router.push("/");
       }
-    } catch (err) {
+    } catch (err: any) {
+      setError(
+        err.response?.data.message ||
+          "Account doesn't exist please sign up first"
+      );
       console.log(err);
     }
   }
@@ -109,6 +115,7 @@ export default function LogIn() {
                   <Checkbox />
                   <Typography> Remember Me</Typography>
                 </Stack>
+                {error && <Alert severity="error">{error}</Alert>}
                 <Button type="submit" variant="contained">
                   LOG IN
                 </Button>

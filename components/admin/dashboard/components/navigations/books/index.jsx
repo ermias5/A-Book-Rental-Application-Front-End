@@ -1,77 +1,103 @@
-import React, { useMemo } from "react";
-import { Container, Stack, Typography } from "@mui/material";
+import React, { useEffect, useMemo, useState } from "react";
+import { Button, Container, Stack, Typography } from "@mui/material";
 import {
   MaterialReactTable,
   useMaterialReactTable,
 } from "material-react-table";
+import axios from "axios";
+import ENV_CONFIG from "../../../../../../config/local.config";
 
-const data = [
-  {
-    name: {
-      firstName: "John",
-      lastName: "Doe",
-    },
-    address: "261 Erdman Ford",
-    city: "East Daphne",
-    state: "Kentucky",
-  },
-  {
-    name: {
-      firstName: "Jane",
-      lastName: "Doe",
-    },
-    address: "769 Dominic Grove",
-    city: "Columbus",
-    state: "Ohio",
-  },
-  {
-    name: {
-      firstName: "Joe",
-      lastName: "Doe",
-    },
-    address: "566 Brakus Inlet",
-    city: "South Linda",
-    state: "West Virginia",
-  },
-  {
-    name: {
-      firstName: "Kevin",
-      lastName: "Vandy",
-    },
-    address: "722 Emie Stream",
-    city: "Lincoln",
-    state: "Nebraska",
-  },
-  {
-    name: {
-      firstName: "Joshua",
-      lastName: "Rolluffs",
-    },
-    address: "32188 Larkin Turnpike",
-    city: "Charleston",
-    state: "South Carolina",
-  },
-];
 export default function BooksTable() {
+  const [newBooks, setNewBooks] = useState([]);
+
+  useEffect(() => {
+    const fetchNewBooks = async () => {
+      try {
+        const response = await axios.get(
+          `${ENV_CONFIG.NEXT_PUBLIC}/api/book/books`
+        );
+
+        console.log("book response: ", response);
+
+        setNewBooks(response.data);
+      } catch (err) {
+        console.error("error fetching new books", err);
+      }
+    };
+
+    fetchNewBooks();
+  }, []);
+
+  console.log("books from state", newBooks);
+
   const columns = useMemo(
     () => [
       {
-        accessorKey: "name.firstname",
+        accessorKey: "no",
         header: "No",
-        size: 10,
+        size: 50,
+        minSize: 25,
+        maxSize: 75,
       },
       {
-        accessorKey: "name.firstname",
+        accessorKey: "author",
         header: "Author",
-        size: 10,
+        size: 50,
+        minSize: 25,
+        maxSize: 75,
+      },
+      {
+        accessorKey: "owner",
+        header: "Owner",
+      },
+      {
+        accessorKey: "category",
+        header: "Category",
+        size: 50,
+        minSize: 25,
+        maxSize: 75,
+      },
+      {
+        accessorKey: "bookName",
+        header: "Book Name",
+      },
+      {
+        accessorKey: "isApproved",
+        header: "Status",
+        Cell: ({ row }) => (
+          <Button
+            variant="contained"
+            // color={isActive ? "primary" : "secondary"}
+            // onClick={handleToggle}
+          >
+            {/* {row.orginal.isApproved ? "Active" : "Inactive"} */}
+            Active
+          </Button>
+        ),
+        size: 50,
+        minSize: 25,
+        maxSize: 75,
       },
     ],
     []
   );
 
+  const tableData = useMemo(
+    () =>
+      newBooks.map((book) => ({
+        no: book.id,
+        author: book.author,
+        owner: book.owner.name,
+        category: book.category,
+        bookName: book.title,
+        isApproved: book.isApproved,
+      })),
+    [newBooks]
+  );
+
   const table = useMaterialReactTable({
     columns,
-    data,
+    data: tableData,
   });
 
   return (
@@ -81,7 +107,7 @@ export default function BooksTable() {
           <Typography
             sx={{ bgcolor: "#fff", p: ".5rem", borderRadius: ".5rem" }}
           >
-            Admin/Owners
+            Admin/Books
           </Typography>
         </Stack>
         <MaterialReactTable table={table} />

@@ -17,8 +17,6 @@ export default function BooksTable() {
           `${ENV_CONFIG.NEXT_PUBLIC}/api/book/books`
         );
 
-        console.log("book response: ", response);
-
         setNewBooks(response.data);
       } catch (err) {
         console.error("error fetching new books", err);
@@ -27,8 +25,6 @@ export default function BooksTable() {
 
     fetchNewBooks();
   }, []);
-
-  console.log("books from state", newBooks);
 
   const columns = useMemo(
     () => [

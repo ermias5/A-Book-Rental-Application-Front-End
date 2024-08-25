@@ -7,7 +7,7 @@ import {
   Typography,
   Modal,
 } from "@mui/material";
-// import BookCoverUpload from "./components/BookCoverUpload";
+import BookCoverUpload from "./components/BookCoverUpload";
 import BookSelection from "./components/BookSelection";
 import Image from "next/image";
 import successImg from "../../../../../public/images/Frame 1000001570.png";
@@ -18,6 +18,7 @@ import { jwtDecode } from "jwt-decode";
 
 export default function BookUpload() {
   const [bookData, setBookData] = useState({});
+  const [bookCoverImage, setBookCoverImage] = useState(null);
   const [open, setOpen] = useState(false);
 
   const handleBookDescriptionOpen = () => setOpen(true);
@@ -37,9 +38,9 @@ export default function BookUpload() {
     }));
   };
 
-  // const handleBookCoverImage = (imageFile) => {
-  //   setBookCoverImage(imageFile);
-  // };
+  const handleBookCoverImage = (imageFile) => {
+    setBookCoverImage(imageFile);
+  };
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -59,11 +60,22 @@ export default function BookUpload() {
   async function handleBookSubmit(event) {
     event.preventDefault();
     try {
+      const formData = new FormData();
+      formData.append("bookData", JSON.stringify(bookData));
+      if (bookCoverImage) {
+        formData.append("bookCoverImage", bookCoverImage);
+      }
+      console.log("form data ", formData);
       const response = await axios.post(
         `${ENV_CONFIG.NEXT_PUBLIC}/api/book/create`,
-
-        { bookData }
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
       );
+      console.log("response data ", response.data);
     } catch (e) {
       console.log(e);
     }
@@ -92,7 +104,7 @@ export default function BookUpload() {
               />
 
               <BookPrice handleBookPricingData={handleBookPricingData} />
-              {/* <BookCoverUpload handleBookCoverImage={handleBookCoverImage} /> */}
+              <BookCoverUpload handleBookCoverImage={handleBookCoverImage} />
               <Button
                 type="submit"
                 variant="contained"

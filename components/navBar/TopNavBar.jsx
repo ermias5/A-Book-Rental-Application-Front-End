@@ -27,7 +27,7 @@ export default function TopNavBar() {
           >
             <Grid item>
               <Typography color={"#f1641e"} fontSize={"2rem"}>
-                2F
+                Book Rent
               </Typography>
             </Grid>
             <Grid item>
